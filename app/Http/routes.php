@@ -11,6 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index');
+
+Route::get('home', 'HomeController@index');
+
+Route::controllers([
+        'auth' => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+]);
+
+Route::get('githubLogin', 'Auth\AuthController@githubLogin');
+
+# Things
+Route::get('things', 'ThingsController@mine');
+
+# Profile
+Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
+Route::get('/{username}', ['as' => 'profile', 'uses' => 'ProfilesController@show']);
