@@ -16,11 +16,11 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
-        'auth' => 'Auth\AuthController',
-        'password' => 'Auth\PasswordController',
+        'auth' => '\ridbi\Http\Controllers\Auth\AuthController',
+        'password' => '\ridbi\Http\Controllers\Auth\PasswordController',
 ]);
 
-Route::get('githubLogin', 'Auth\AuthController@githubLogin');
+Route::get('githubLogin', '\ridbi\Http\Controllers\Auth\AuthController@githubLogin');
 
 # Things
 Route::get('things', 'ThingsController@mine');

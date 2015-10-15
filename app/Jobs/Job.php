@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace ridbi\Jobs;
 
 use Illuminate\Bus\Queueable;
 

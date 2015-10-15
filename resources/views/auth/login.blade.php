@@ -48,7 +48,7 @@
 			</div>
 			
 			<div class="panel-body" style="text-align: center">
-				<?php echo url('githubLogin', 'Log in with GitHub', array('class' => 'btn btn-primary'));?>
+				<?php echo link_to('githubLogin', 'Log in with GitHub', array('class' => 'btn btn-primary'));?>
 				<h3>Or with your Ridbi Account</h3>
 			</div>
 			

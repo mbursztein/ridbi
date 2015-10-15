@@ -48,8 +48,9 @@
                         </div>
 
                         <div class="panel-body" style="text-align: center">
-                                <?php echo url('auth/login', 'Come in', array('class' => 'btn btn-primary'));?>
+                                <?php echo link_to('auth/login', 'Come in', array('class' => 'btn btn-primary'));?>
                         </div>
                 </div>
         </div>
 </div>
+@endsection

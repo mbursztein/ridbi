@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace ridbi\Http\Controllers\Auth;
 
-use App\User;
+use ridbi\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use ridbi\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use ridbi\Http\Controllers\Auth\AuthenticateUser;
+use ridbi\Http\Controllers\Auth\AuthenticateUserListener;
 
 class AuthController extends Controller
 {
@@ -61,5 +64,21 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function githubLogin(AuthenticateUser $authenticateUser, Request $request)
+    {
+        $hasCode = $request->has('code');
+        return $authenticateUser->execute($hasCode, $this);
+    }
+    /**
+     * When a user has successfully been logged in...
+     *
+     * @param $user
+     * @return \Illuminate\Routing\Redirector
+     */
+    public function userHasLoggedIn($user)
+    {
+        return redirect('/');
     }
 }
