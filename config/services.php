@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'github' => [
+        'client_id' => getenv('GITHUB_CLIENT_ID'),
+        'client_secret' => getenv('GITHUB_CLIENT_SECRET'),
+        'redirect' => 'http://localhost:8000/login'
+    ]
+
 ];

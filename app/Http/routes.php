@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('things', ['as' => 'home', 'uses' => 'ThingController@index']);
+Route::get('thing/{id}', 'ThingController@show');
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
@@ -23,7 +26,9 @@ Route::controllers([
 Route::get('githubLogin', '\ridbi\Http\Controllers\Auth\AuthController@githubLogin');
 
 # Things
-Route::get('things', 'ThingsController@mine');
+//Route::get('things', 'ThingController@index');
+
+
 
 # Profile
 Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);

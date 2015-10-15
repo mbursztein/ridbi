@@ -8,8 +8,6 @@ use ridbi\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
-use ridbi\Http\Controllers\Auth\AuthenticateUser;
-use ridbi\Http\Controllers\Auth\AuthenticateUserListener;
 
 class AuthController extends Controller
 {

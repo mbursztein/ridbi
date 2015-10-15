@@ -137,7 +137,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
-        'Laravel\Socialite\SocialiteServiceProvider',
 
         /*
          * Application Service Providers...
@@ -197,7 +196,6 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Illuminate\Html\FormFacade::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
-        'Socialite' => 'Laravel\Socialite\Facades\Socialite',
 
     ],
 
