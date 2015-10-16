@@ -1,3 +1,7 @@
+@extends('layout')
+
+@section('content')
+<a href="/thing/create">+ Add thing</a>
 @foreach ($things as $thing)
 <ul>
 	<li>
@@ -6,3 +10,4 @@
 	</li>
 </ul>
 @endforeach
+@endsection

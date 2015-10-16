@@ -27,7 +27,7 @@ class ThingController extends Controller
      */
     public function create()
     {
-        //
+        return view('things.create');
     }
 
     /**

@@ -12,7 +12,9 @@
 */
 
 Route::get('things', ['as' => 'home', 'uses' => 'ThingController@index']);
+Route::get('thing/create', 'ThingController@create');
 Route::get('thing/{id}', 'ThingController@show');
+
 
 Route::get('/', 'WelcomeController@index');
 
