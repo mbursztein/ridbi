@@ -7,6 +7,7 @@
 	<title>Ridbi</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/libs.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -58,7 +59,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li>{!! link_to('/things/', "My things") !!}</li>
+								<li>{!! link_to('/things/', "Things") !!}</li>
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>
 						</li>
@@ -68,10 +69,16 @@
 		</div>
 	</nav>
 
-	@yield('content')
+	<div class="container">
+
+		@yield('content')
+	</div>
 
 	<!-- Scripts -->
+	<script src="/js/libs.js"></script>
+	@include('flash')
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

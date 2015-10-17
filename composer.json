@@ -22,6 +22,9 @@
             "database",
             "app/Http/Controllers"
         ],
+        "files": [
+            "helpers.php"
+        ],
         "psr-4": {
             "ridbi\\": "app/"
         }

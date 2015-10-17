@@ -3,9 +3,9 @@
 namespace ridbi\Http\Controllers;
 
 use Illuminate\Http\Request;
-use ridbi\Http\Requests;
+use ridbi\Http\Requests\ThingRequest;
 use ridbi\Http\Controllers\Controller;
-use ridbi\Things;
+use ridbi\Thing;
 
 class ThingController extends Controller
 {
@@ -16,7 +16,7 @@ class ThingController extends Controller
      */
     public function index()
     {
-        $things = Things::all();
+        $things = Thing::all();
         return view('things.index', compact('things'));
     }
 
@@ -36,9 +36,13 @@ class ThingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThingRequest $request)
     {
-        //
+        Thing::create($request->all());
+        
+        flash()->success('Great!', 'Your thing has been created');
+
+        return redirect()->back();
     }
 
     /**
@@ -49,7 +53,7 @@ class ThingController extends Controller
      */
     public function show($id)
     {
-        $thing = Things::findOrFail($id);
+        $thing = Thing::findOrFail($id);
         return view('things.show', compact('thing'));
     }
 

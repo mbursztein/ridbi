@@ -19,3 +19,11 @@ $factory->define(ridbi\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+$factory->define(ridbi\Thing::class, function (Faker\Generator $faker) {
+    return [
+        'name'			=> $faker->name,
+        'description'	=> $faker->paragraphs(1)
+    ];
+});
