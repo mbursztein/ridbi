@@ -8,6 +8,7 @@
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/libs.css') }}" rel="stylesheet">
+	<link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/dropzone.css' rel='stylesheet' type='text/css'>
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -76,6 +77,7 @@
 
 	<!-- Scripts -->
 	<script src="/js/libs.js"></script>
+	@yield('scripts.footer')
 	@include('flash')
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use ridbi\Http\Requests\ThingRequest;
 use ridbi\Http\Controllers\Controller;
 use ridbi\Thing;
+use ridbi\Photo;
 
 class ThingController extends Controller
 {
@@ -55,6 +56,17 @@ class ThingController extends Controller
     {
         $thing = Thing::findOrFail($id);
         return view('things.show', compact('thing'));
+    }
+
+    public function addPhoto($id, Request $request)
+    {
+        $this->validate($request, [
+            'photo' => 'required|mimes:jpg,jpeg,png'
+        ]);
+
+        $photo = Photo::fromForm($request->file('photo'));
+        Thing::findOrFail($id)->addPhoto($photo);
+
     }
 
     /**

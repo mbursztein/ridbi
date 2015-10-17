@@ -9,7 +9,7 @@
 	<ul>
 		<li>
 			<a href="/things/{{ $thing->id }}">{{ $thing->name }}</a><br />
-			{{ $thing->description }}
+			{!! nl2br($thing->description) !!}
 		</li>
 	</ul>
 	@endforeach

@@ -16,7 +16,7 @@ class CreateThingPhotosTable extends Migration
             $table->increments('id');
             $table->integer('thing_id')->unsigned();
             $table->foreign('thing_id')->references('id')->on('things')->onDelete('cascade');
-            $table->string('photo');
+            $table->string('path');
             $table->timestamps();
         });
     }

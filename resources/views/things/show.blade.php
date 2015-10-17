@@ -3,4 +3,27 @@
 @section('content')
 <h2>{{ $thing->name }}</h2>
 <h3>{{ $thing->description }}</h3>
-@endsection
+
+@foreach ($thing->photos as $photo)
+	<img src="/{{ $photo->path }}" alt="" />
+@endforeach
+
+
+<form id="addPhotosForm" action="/things/{{ $thing->id }}/photos" method="POST" class="dropzone">
+	{!! csrf_field() !!}
+</form>
+
+
+
+@stop
+
+@section('scripts.footer')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/dropzone.js"></script>
+	<script>
+		Dropzone.options.addPhotosForm = {
+			paramName: 'photo',
+			maxFilesize: 3,
+			acceptedFiles: '.jpg, .jprg, .png'
+		}
+	</script>
+@stop

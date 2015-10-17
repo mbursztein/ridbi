@@ -11,9 +11,14 @@
 |
 */
 
+
+
+
 Route::resource('things', 'ThingController');
 
 Route::get('/', 'WelcomeController@index');
+
+Route::post('things/{id}/photos', 'ThingController@addPhoto');
 
 Route::get('home', 'HomeController@index');
 

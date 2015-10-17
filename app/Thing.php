@@ -16,4 +16,9 @@ class Thing extends Model
     {
     	return $this->hasMany('ridbi\Photo');
     }
+
+    public function addPhoto(Photo $photo)
+    {
+    	return $this->photos()->save($photo);
+    }
 }
