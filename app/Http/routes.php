@@ -14,7 +14,13 @@
 
 
 
+
+
+Route::get('/things/index', 'ThingController@index');
+
 Route::resource('things', 'ThingController');
+
+
 
 Route::get('/', 'WelcomeController@index');
 

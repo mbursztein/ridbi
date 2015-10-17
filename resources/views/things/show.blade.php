@@ -8,14 +8,14 @@
 	<img src="/{{ $photo->path }}" alt="" />
 @endforeach
 
-
-<form id="addPhotosForm" action="/things/{{ $thing->id }}/photos" method="POST" class="dropzone">
-	{!! csrf_field() !!}
-</form>
-
-
+@if (\Auth::user())
+	@if ($thing->ownedBy(\Auth::user()))
+		<form id="addPhotosForm" action="/things/{{ $thing->id }}/photos" method="POST" class="dropzone">{!! csrf_field() !!}</form>
+	@endif
+@endif
 
 @stop
+
 
 @section('scripts.footer')
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/dropzone.js"></script>

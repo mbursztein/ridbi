@@ -10,6 +10,7 @@ use ridbi\Photo;
 
 class ThingController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +40,10 @@ class ThingController extends Controller
      */
     public function store(ThingRequest $request)
     {
-        Thing::create($request->all());
+        
+        $thingy = \Auth::user()->things()->create($request->all());
+
+        $thingy->save();
         
         flash()->success('Great!', 'Your thing has been created');
 
@@ -64,10 +68,31 @@ class ThingController extends Controller
             'photo' => 'required|mimes:jpg,jpeg,png'
         ]);
 
+        $thing = Thing::findOrFail($id);
+
+
+        if (! $thing->ownedBy(\Auth::user())) {
+            return $this->unauthorized($request);
+        }
+
+
+
         $photo = Photo::fromForm($request->file('photo'));
         Thing::findOrFail($id)->addPhoto($photo);
 
     }
+
+
+    protected function unauthorized(Request $request)
+    {
+        if ($request->ajax()) {
+            return response(['message' => 'Nope.'], 403);
+        }
+
+        flash('Nope.');
+        return redirect('/');
+    }
+
 
     /**
      * Show the form for editing the specified resource.
