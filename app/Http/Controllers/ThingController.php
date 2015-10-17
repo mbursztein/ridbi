@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use ridbi\Http\Requests\ThingRequest;
 use ridbi\Http\Controllers\Controller;
 use ridbi\Thing;
+use ridbi\User;
 use ridbi\Photo;
 
 class ThingController extends Controller
@@ -19,6 +20,16 @@ class ThingController extends Controller
     public function index()
     {
         $things = Thing::all();
+        return view('things.index', compact('things'));
+    }
+
+    public function mine()
+    {
+
+        $things = Thing::where('user_id', '=', \Auth::user()->id)->get();
+
+        
+
         return view('things.index', compact('things'));
     }
 

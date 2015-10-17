@@ -17,6 +17,7 @@
 
 
 Route::get('/things/index', 'ThingController@index');
+Route::get('/things/mine', 'ThingController@mine');
 
 Route::resource('things', 'ThingController');
 
