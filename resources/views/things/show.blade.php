@@ -1,6 +1,38 @@
 @extends('layout')
 
 @section('content')
+
+@if ($thing->ownedBy(\Auth::user()))
+
+<script>
+	function popit() {
+	swal({
+		title: "Are you sure?",
+		text: "You can't undo!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, delete it!",
+		closeOnConfirm: false }, function(){
+			destroyThing.submit();
+		});
+	}
+</script>
+
+	<form id="destroyThing" action="/things/destroy/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
+		<button class="btn btn-danger" onclick="popit(); return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
+
+		
+
+
+	</form>
+
+
+
+
+	
+@endif
+
 <h2>{{ $thing->name }}</h2>
 <h3>{{ $thing->description }}</h3>
 

@@ -58,7 +58,7 @@ class ThingController extends Controller
         
         flash()->success('Great!', 'Your thing has been created');
 
-        return redirect()->back();
+        return redirect('/things/mine');
     }
 
     /**
@@ -101,7 +101,7 @@ class ThingController extends Controller
         }
 
         flash('Nope.');
-        return redirect('/');
+        return 'Nope';
     }
 
 
@@ -136,6 +136,19 @@ class ThingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $thing = Thing::findOrFail($id);
+
+
+        if (! $thing->ownedBy(\Auth::user())) {
+            return $this->unauthorized($request);
+        } else {
+            $thing->delete();
+            flash()->success('Done', 'Item removed');
+            return redirect('/things/mine');
+        }
+
+
+
     }
 }

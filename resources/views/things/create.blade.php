@@ -15,7 +15,7 @@
 		</div>
 	@endif
 
-	<form method="POST" action="/things" enctype="multipart/form-data">
+	<form method="POST" action="/things/store" enctype="multipart/form-data">
 		{!! csrf_field() !!}
 		<div class="form-group">
 			<label for="name">Name:</label>

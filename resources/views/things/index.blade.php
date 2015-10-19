@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<div class="row"><a href="/things/create" class="btn btn-primary">+ Thing</a></div>
+<div class="row"><a href="/things/create" class="btn btn-primary">+</a></div>
 <br />
 <div class="row">
 	<div class="col-md-6 panel">

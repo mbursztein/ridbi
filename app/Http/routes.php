@@ -17,6 +17,7 @@
 
 
 Route::get('/things/index', 'ThingController@index');
+Route::get('/things/', 'ThingController@index');
 Route::get('/things/mine', 'ThingController@mine');
 
 Route::resource('things', 'ThingController');
@@ -25,7 +26,9 @@ Route::resource('things', 'ThingController');
 
 Route::get('/', 'WelcomeController@index');
 
+Route::post('things/destroy/{id}', 'ThingController@destroy');
 Route::post('things/{id}/photos', 'ThingController@addPhoto');
+Route::post('things/store', 'ThingController@store');
 
 Route::get('home', 'HomeController@index');
 
