@@ -8,6 +8,7 @@ use ridbi\Http\Controllers\Controller;
 use ridbi\Thing;
 use ridbi\User;
 use ridbi\Photo;
+use Input;
 
 class ThingController extends Controller
 {
@@ -113,7 +114,7 @@ class ThingController extends Controller
      */
     public function edit($id)
     {
-        return 'lets edit';
+        //
     }
 
     /**
@@ -125,7 +126,15 @@ class ThingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $thing = Thing::findOrFail($id);
+
+        if (! $thing->ownedBy(\Auth::user())) {
+            return $this->unauthorized($request);
+        }
+        
+        $thing->name = Input::get('value');
+        $thing->save();
+
     }
 
     /**

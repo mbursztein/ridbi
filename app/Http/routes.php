@@ -27,7 +27,7 @@ Route::resource('things', 'ThingController');
 Route::get('/', 'WelcomeController@index');
 
 Route::post('things/destroy/{id}', 'ThingController@destroy');
-Route::post('things/edit/{id}', 'ThingController@edit');
+Route::post('things/update/{id}', 'ThingController@update');
 Route::post('things/{id}/photos', 'ThingController@addPhoto');
 Route::post('things/store', 'ThingController@store');
 

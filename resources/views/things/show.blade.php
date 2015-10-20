@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if ($thing->ownedBy(\Auth::user()))
+@if (\Auth::check() && $thing->ownedBy(\Auth::user()))
 
 <script>
 	function popit() {
@@ -24,23 +24,18 @@
 
 	<form id="destroyThing" action="/things/destroy/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
 		<button class="btn btn-danger" onclick="popit(); return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
-
-		
-
-
 	</form>
-
-
-
-
 	
 @endif
 
 
 
 
-<h2><a href="#" id="name" data-type="text" data-pk="{{ $thing->id }}" data-url="/things/edit/{{ $thing->id }}" data-title="Enter name">{{ $thing->name }}</a></h2>
-
+<h2>
+	@if (\Auth::check() && $thing->ownedBy(\Auth::user()))<span data-inputclass="thing_name_editable_field" id="name" data-type="text" data-pk="{{ $thing->id }}" data-url="/things/update/{{ $thing->id }}" data-title="Enter name">@endif
+		{{ $thing->name }}
+	@if (\Auth::check() && $thing->ownedBy(\Auth::user()))</span>@endif
+</h2>
 
 <h3>{{ $thing->description }}</h3>
 
@@ -48,11 +43,21 @@
 	<img src="/{{ $photo->path }}" alt="" />
 @endforeach
 
-@if (\Auth::user())
-	@if ($thing->ownedBy(\Auth::user()))
-		<form id="addPhotosForm" action="/things/{{ $thing->id }}/photos" method="POST" class="dropzone">{!! csrf_field() !!}</form>
-	@endif
+
+
+
+
+@if (\Auth::check() && $thing->ownedBy(\Auth::user()))
+	<form id="addPhotosForm" action="/things/{{ $thing->id }}/photos" method="POST" class="dropzone">{!! csrf_field() !!}</form>
 @endif
+
+
+
+
+	
+		
+	
+
 
 @stop
 

@@ -25,7 +25,7 @@ class Thing extends Model
 
     public function ownedBy(User $user)
     {
-    	return $this->user_id == $user->id;
+        return $this->user_id == $user->id;
     }
 
     public function addPhoto(Photo $photo)
