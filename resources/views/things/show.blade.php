@@ -17,7 +17,10 @@
 			destroyThing.submit();
 		});
 	}
+
 </script>
+
+
 
 	<form id="destroyThing" action="/things/destroy/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
 		<button class="btn btn-danger" onclick="popit(); return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
@@ -33,7 +36,12 @@
 	
 @endif
 
-<h2>{{ $thing->name }}</h2>
+
+
+
+<h2><a href="#" id="name" data-type="text" data-pk="{{ $thing->id }}" data-url="/things/edit/{{ $thing->id }}" data-title="Enter name">{{ $thing->name }}</a></h2>
+
+
 <h3>{{ $thing->description }}</h3>
 
 @foreach ($thing->photos as $photo)
@@ -57,5 +65,17 @@
 			maxFilesize: 3,
 			acceptedFiles: '.jpg, .jprg, .png'
 		}
+
+		$(document).ready(function() {
+		    $('#name').editable();
+		    params: {
+		        csrf: 'my-csrf-token'
+		    }
+		});
+
+		$.fn.editable.defaults.mode = 'inline';
+
+
+
 	</script>
 @stop

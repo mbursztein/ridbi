@@ -113,7 +113,7 @@ class ThingController extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'lets edit';
     }
 
     /**
