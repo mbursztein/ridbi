@@ -9,6 +9,7 @@ use ridbi\Thing;
 use ridbi\User;
 use ridbi\Photo;
 use Input;
+use ridbi\Ask;
 
 class ThingController extends Controller
 {
@@ -54,7 +55,6 @@ class ThingController extends Controller
     {
         
         $thingy = \Auth::user()->things()->create($request->all());
-
         $thingy->save();
         
         flash()->success('Great!', 'Your thing has been created');
@@ -134,6 +134,15 @@ class ThingController extends Controller
         
         $thing->name = Input::get('value');
         $thing->save();
+
+    }
+
+    public function ask(Request $request, $id)
+    {
+        $ask = new Ask;
+        $ask->thing_id = $id;
+        $ask->user_id = \Auth::user()->id;
+        $ask->save();
 
     }
 

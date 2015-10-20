@@ -2,28 +2,42 @@
 
 @section('content')
 
-@if (\Auth::check() && $thing->ownedBy(\Auth::user()))
-
 <script>
-	function popit() {
-	swal({
-		title: "Are you sure?",
-		text: "You can't undo!",
-		type: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#DD6B55",
-		confirmButtonText: "Yes, delete it!",
-		closeOnConfirm: false }, function(){
-			destroyThing.submit();
-		});
+	function popitDelete() {
+		swal({
+			title: "Are you sure?",
+			text: "You can't undo!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes",
+			closeOnConfirm: false }, function(){
+				destroyThing.submit();
+			});
 	}
 
+	function popitRequest() {
+		swal({
+			title: "Proceed with request?",
+			text: "Owner will be notified",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#6bDD55",
+			confirmButtonText: "Yes",
+			closeOnConfirm: false }, function(){
+				requestThing.submit();
+			});
+	}
 </script>
+
+@if (\Auth::check() && $thing->ownedBy(\Auth::user()))
+
+
 
 
 
 	<form id="destroyThing" action="/things/destroy/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
-		<button class="btn btn-danger" onclick="popit(); return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
+		<button class="btn btn-danger" onclick="popitDelete(); return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
 	</form>
 	
 @endif
@@ -33,7 +47,7 @@
 
 <h2>
 	@if (\Auth::check() && $thing->ownedBy(\Auth::user()))<span data-inputclass="thing_name_editable_field" id="name" data-type="text" data-pk="{{ $thing->id }}" data-url="/things/update/{{ $thing->id }}" data-title="Enter name">@endif
-		{{ $thing->name }}
+		{{ $thing->name }}</h2>
 	@if (\Auth::check() && $thing->ownedBy(\Auth::user()))</span>@endif
 </h2>
 
@@ -49,6 +63,10 @@
 
 @if (\Auth::check() && $thing->ownedBy(\Auth::user()))
 	<form id="addPhotosForm" action="/things/{{ $thing->id }}/photos" method="POST" class="dropzone">{!! csrf_field() !!}</form>
+@else
+	<form id="requestThing" action="/things/ask/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
+		<button class="btn btn-danger" onclick="popitRequest(); return false;">Request</button>
+	</form>
 @endif
 
 

@@ -10,12 +10,18 @@ class Thing extends Model
 	protected $fillable = [
 		'name',
 		'description',
-        'owner'
+        'owner',
+        'renter'
 	];
 
     public function photos()
     {
     	return $this->hasMany('ridbi\Photo');
+    }
+
+    public function renter()
+    {
+        return $this->belongsTo('ridbi\User', 'renter');
     }
 
     public function owner()
