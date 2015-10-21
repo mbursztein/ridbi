@@ -31,16 +31,13 @@
 </script>
 
 @if (\Auth::check() && $thing->ownedBy(\Auth::user()))
-
-
-
-
-
 	<form id="destroyThing" action="/things/destroy/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
 		<button class="btn btn-danger" onclick="popitDelete(); return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
 	</form>
-	
 @endif
+
+
+{!!$thing_state!!}
 
 
 

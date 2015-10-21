@@ -71,7 +71,16 @@ class ThingController extends Controller
     public function show($id)
     {
         $thing = Thing::findOrFail($id);
-        return view('things.show', compact('thing'));
+        $thing_state = "Available";
+
+        $ask = Ask::where('thing_id', $id)->first();
+
+        if ($ask) {
+            $thing_state = "Requested";
+        }
+
+
+        return view('things.show', compact('thing'))->with('thing_state', $thing_state);
     }
 
     public function addPhoto($id, Request $request)
@@ -139,11 +148,15 @@ class ThingController extends Controller
 
     public function ask(Request $request, $id)
     {
+        //To-do: Proceed only if user did not already requested this item
+
         $ask = new Ask;
         $ask->thing_id = $id;
         $ask->user_id = \Auth::user()->id;
         $ask->save();
+        flash()->success('Item requested', 'Owner has been notified');
 
+        return redirect('/things/index');
     }
 
     /**
