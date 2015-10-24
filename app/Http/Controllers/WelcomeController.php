@@ -1,4 +1,8 @@
-<?php namespace ridbi\Http\Controllers;
+<?php
+
+namespace ridbi\Http\Controllers;
+
+use GeoIP;
 
 class WelcomeController extends Controller {
 
@@ -30,7 +34,10 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		//$location = GeoIP::getLocation('99.246.184.74');
+		//dd($location);
+		return view('welcome', compact('location'));
+
 	}
 
 }

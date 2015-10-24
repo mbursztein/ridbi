@@ -11,7 +11,7 @@
 	<link href="{{ asset('/css/libs.css') }}" rel="stylesheet">
 	<link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/dropzone.css' rel='stylesheet' type='text/css'>
 	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alef:regular|Syncopate:regular&amp;subset=latin" media="all">
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
@@ -33,7 +33,11 @@
 			border-radius: 50%;
 			width: 100%;
 		}
+
+		
 	</style>
+
+
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -64,6 +68,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li>{!! link_to('/things/mine', "My things") !!}</li>
+								<li>{!! link_to('/rentals', "Rentals") !!}</li>
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>
 						</li>

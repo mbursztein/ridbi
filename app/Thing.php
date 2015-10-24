@@ -19,9 +19,9 @@ class Thing extends Model
     	return $this->hasMany('ridbi\Photo');
     }
 
-    public function renter()
+    public function rentals()
     {
-        return $this->belongsTo('ridbi\User', 'renter');
+        return $this->hasMany('ridbi\Rental');
     }
 
     public function owner()

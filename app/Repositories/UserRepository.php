@@ -2,7 +2,7 @@
 
 namespace ridbi\Repositories;
 
-use App\User;
+use ridbi\User;
 
 class UserRepository {
 

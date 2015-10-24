@@ -34,12 +34,17 @@
 	<form id="destroyThing" action="/things/destroy/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
 		<button class="btn btn-danger" onclick="popitDelete(); return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
 	</form>
+	<br />
+	<div>
+		@if ($status != 'Available')
+			<a href="/rentals">
+		@endif
+		<span class="label label-{{$label_type}}">{{$status}}</span>
+		@if ($status != 'Available')
+			</a>
+		@endif
+	</div>
 @endif
-
-
-{!!$thing_state!!}
-
-
 
 
 <h2>
@@ -57,13 +62,21 @@
 
 
 
+<hr>
+
 
 @if (\Auth::check() && $thing->ownedBy(\Auth::user()))
 	<form id="addPhotosForm" action="/things/{{ $thing->id }}/photos" method="POST" class="dropzone">{!! csrf_field() !!}</form>
 @else
-	<form id="requestThing" action="/things/ask/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
-		<button class="btn btn-danger" onclick="popitRequest(); return false;">Request</button>
-	</form>
+	
+	@if ($status == 'available')
+		<!-- Only show this if logged in user didn't request the item already -->
+		<form id="requestThing" action="/things/ask/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
+			<button class="btn btn-primary" onclick="popitRequest(); return false;">Request</button>
+		</form>
+	@else
+		Item not available
+	@endif
 @endif
 
 

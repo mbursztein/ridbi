@@ -22,9 +22,18 @@ Route::get('/things/mine', 'ThingController@mine');
 
 Route::resource('things', 'ThingController');
 
+Route::get('rentals', 'RentalsController@index');
+
+Route::post('rentals/confirm/{id}', 'RentalsController@confirm');
+Route::post('rentals/reject/{id}', 'RentalsController@reject');
+Route::post('rentals/returned/{id}', 'RentalsController@returned');
+Route::post('rentals/process/{action}/{id}', 'RentalsController@process');
+
 
 
 Route::get('/', 'WelcomeController@index');
+
+
 
 Route::post('things/destroy/{id}', 'ThingController@destroy');
 Route::post('things/update/{id}', 'ThingController@update');
@@ -39,4 +48,5 @@ Route::controllers([
         'password' => '\ridbi\Http\Controllers\Auth\PasswordController',
 ]);
 
-Route::get('githubLogin', '\ridbi\Http\Controllers\Auth\AuthController@githubLogin');
+Route::get('githubLogin', 'Auth\AuthController@redirectToProvider');
+Route::get('authcallback', 'Auth\AuthController@handleProviderCallback');

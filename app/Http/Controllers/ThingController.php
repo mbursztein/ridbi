@@ -9,7 +9,7 @@ use ridbi\Thing;
 use ridbi\User;
 use ridbi\Photo;
 use Input;
-use ridbi\Ask;
+use ridbi\Rental;
 
 class ThingController extends Controller
 {
@@ -71,16 +71,28 @@ class ThingController extends Controller
     public function show($id)
     {
         $thing = Thing::findOrFail($id);
-        $thing_state = "Available";
+        $rented_status = Rental::where('thing_id', $id)->where('status', 'confirmed')->get();
+        $requested_status = Rental::where('thing_id', $id)->where('status', 'pending')->get();
 
-        $ask = Ask::where('thing_id', $id)->first();
-
-        if ($ask) {
-            $thing_state = "Requested";
+        if ($rented_status->count() > 0)
+        {
+            $status = 'Rented';
+            $label_type = 'danger';
+        }
+        elseif ($requested_status->count() > 0)
+        {
+            $status = 'Requested';
+            $label_type = 'warning';
+        }
+        else
+        {
+            $status = 'available';
+            $label_type = 'success';
         }
 
 
-        return view('things.show', compact('thing'))->with('thing_state', $thing_state);
+
+        return view('things.show', compact('thing', 'status', 'label_type'));
     }
 
     public function addPhoto($id, Request $request)
@@ -148,15 +160,19 @@ class ThingController extends Controller
 
     public function ask(Request $request, $id)
     {
-        //To-do: Proceed only if user did not already requested this item
+        //Get thing owner
+        $thing = Thing::findOrFail($id);
+        $thing_owner = $thing->user_id;
 
-        $ask = new Ask;
-        $ask->thing_id = $id;
-        $ask->user_id = \Auth::user()->id;
-        $ask->save();
+
+        $rental = new Rental;
+        $rental->thing_id = $id;
+        $rental->renter_user_id = \Auth::user()->id;
+        $rental->owner_user_id = $thing_owner;
+        $rental->save();
         flash()->success('Item requested', 'Owner has been notified');
 
-        return redirect('/things/index');
+        return redirect('/rentals');
     }
 
     /**

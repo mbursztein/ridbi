@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'github_id', 'avatar'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -40,5 +40,10 @@ class User extends Model implements AuthenticatableContract,
     public function things()
     {
         return $this->hasMany('ridbi\Thing');
+    }
+
+    public function rentals()
+    {
+        return $this->hasMany('ridbi\Rental');
     }
 }

@@ -24,6 +24,8 @@ class AddTimestampsToAsks extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('asks', function ($table) {
+            $table->timestamps();
+        });
     }
 }

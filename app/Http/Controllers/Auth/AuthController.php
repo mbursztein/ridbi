@@ -8,6 +8,8 @@ use ridbi\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
+use Socialite;
+use Illuminate\Contracts\Auth\Guard;
 
 class AuthController extends Controller
 {
@@ -29,9 +31,10 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Guard $auth)
     {
         $this->middleware('guest', ['except' => 'getLogout']);
+        $this->auth = $auth;
     }
 
     /**
@@ -64,17 +67,43 @@ class AuthController extends Controller
         ]);
     }
 
-    public function githubLogin(AuthenticateUser $authenticateUser, Request $request)
+
+    public function redirectToProvider()
     {
-        $hasCode = $request->has('code');
-        return $authenticateUser->execute($hasCode, $this);
+        return Socialite::driver('github')->redirect();
     }
-    /**
-     * When a user has successfully been logged in...
-     *
-     * @param $user
-     * @return \Illuminate\Routing\Redirector
-     */
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::with('github')->user();
+        
+        $user_exists = User::where('email', '=', $user->email)->first();
+
+        if ($user_exists) {
+            $user_id = User::where('email', '=', $user->email)->first();
+            \Auth::loginUsingId($user_id->id);
+            return redirect('/home');
+        } else {
+            User::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'github_id' => $user->id,
+                'avatar' => $user->avatar,
+            ]);
+            $user_id = User::where('email', '=', $user->email)->first();
+            \Auth::loginUsingId($user_id->id);
+            return redirect('/home');
+        }
+    }
+
+
+
+
+    
+
+
+
+
     public function userHasLoggedIn($user)
     {
         return redirect('/');

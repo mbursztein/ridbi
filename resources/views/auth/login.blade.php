@@ -7,16 +7,17 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-12">
 			<div class="panel-body" style="text-align: center">
-				<h1>Ridbi</h1>
-				<h2>Rent it, don't buy it</h2>
+				<h1>Make money, save the panet.</h1>
 			</div>
 			
 			<div class="panel-body" style="text-align: center">
 				<?php echo link_to('githubLogin', 'Log in with GitHub', array('class' => 'btn btn-primary'));?>
 				<h3>Or with your Ridbi Account</h3>
 			</div>
+		</div>
+		<div class="col-md-8 col-md-offset-2">
 			
 			@if (count($errors) > 0)
 				<div class="alert alert-danger">
