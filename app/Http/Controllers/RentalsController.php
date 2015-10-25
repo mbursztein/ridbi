@@ -53,7 +53,7 @@ class RentalsController extends Controller
 
 
 
-        return view('rentals.index', compact('requests', 'others_want', 'your_rentals', 'others_rentals'));
+        return view('rentals/index', compact('requests', 'others_want', 'your_rentals', 'others_rentals'));
 
         
         //select * from things where id in $rentals->thing_id;

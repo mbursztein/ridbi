@@ -17,14 +17,14 @@
 	@foreach ($others_want as $other_want)
 	<ul>
 		<li>
-			{{ $other_want->name }} wants your <a href="/things/{{ $other_want->thing_id }}">{{ $other_want->thing_name }}</a><br />
+			{{ $other_want->name }} wants your <a href="/things/{{ $other_want->thing_id }}">{{ $other_want->thing_name }}</a>
 
-			<form id="confirmRental" action="/rentals/process/confirm/{{ $other_want->id }}" method="POST">{!! csrf_field() !!}
-				<button class="btn btn-success">Confirm</button>
+			<form style="display: inline;" id="confirmRental" action="/rentals/process/confirm/{{ $other_want->id }}" method="POST">{!! csrf_field() !!}
+				<button class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></button>
 			</form>
 
-			<form id="rejectRental" action="/rentals/process/reject/{{ $other_want->id }}" method="POST">{!! csrf_field() !!}
-				<button class="btn btn-danger">Reject</button>
+			<form style="display: inline;" id="rejectRental" action="/rentals/process/reject/{{ $other_want->id }}" method="POST">{!! csrf_field() !!}
+				<button class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
 			</form>
 
 			
