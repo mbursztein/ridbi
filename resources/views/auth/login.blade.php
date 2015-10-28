@@ -11,14 +11,14 @@
 		<div class="col-md-12">
 			
 			<div class="panel-body" style="text-align: center">
-				<?php echo link_to('githubLogin', 'Log in with GitHub', array('class' => 'btn btn-primary'));?>
-				<h3>Or:</h3>
+				<a href="/githubLogin"><i class="fa fa-github-alt fa-4x"></i></a>
 			</div>
 		</div>
 	</div>
 		
 		<div class="parent">
-			<div class="child border-util padding-util white-bg-util">
+			<div class="child padding-util white-bg-util">
+
 				
 				@if (count($errors) > 0)
 					<div class="alert alert-danger">
@@ -61,12 +61,18 @@
 					<div class="form-group">
 						<div class="col-md-12">
 							<button type="submit" class="btn btn-primary">Login</button>
-
-							<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
 						</div>
 					</div>
 				</form>
 			</div>
+
 		</div>
+		<div class="parent">
+			<div class="child center-util">
+				<p><a href="{{ url('/password/email') }}">Forgot Your Password?</a></p>
+				<p>New here? <a href="{{ url('/auth/register') }}">Register</a>.</p>
+			</div>
+		</div>
+
 </div>
 @endsection

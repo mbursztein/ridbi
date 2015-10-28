@@ -1,4 +1,6 @@
 $grey: #dedede;
+$dark_blue: #00a4dd;
+$blue: #9fe7ff;
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -12,7 +14,7 @@ img {
 
 .parent {
 	display: flex;
-	height: 300px; /* Or whatever */
+	min-height: 80px;
 }
 
 .child {
@@ -37,8 +39,29 @@ img {
 	background-color: #fff;
 }
 
+.center-util {
+	text-align: center;
+}
+
 /*OVERRIDES*/
 
 .form-horizontal .control-label {
     text-align: left;
+}
+
+.navbar-default {
+	background-color: $dark_blue;
+	border: none;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: $blue;
+}
+
+.navbar {
+	border-radius: 0;
+}
+
+.navbar-default .navbar-brand {
+	color: #fff;
 }

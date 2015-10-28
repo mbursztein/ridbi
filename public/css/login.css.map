@@ -1,1 +1,1 @@
-{"version":3,"sources":["login.scss"],"names":[],"mappings":"AAEA;EACC,0BAHa,EAER","file":"login.css","sourcesContent":["$blue: #16ddff;\n\nbody {\n\tbackground-color: $blue;\n}"],"sourceRoot":"/source/"}
+{"version":3,"sources":["login.scss"],"names":[],"mappings":"AAEA;EACC,0BAHa,EAER","file":"login.css","sourcesContent":["$blue: #9fe7ff;\n\nbody {\n\tbackground-color: $blue;\n}"],"sourceRoot":"/source/"}
