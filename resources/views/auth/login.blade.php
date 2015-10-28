@@ -69,7 +69,9 @@
 		</div>
 		<div class="parent">
 			<div class="child center-util">
-				<p><a href="{{ url('/password/email') }}">Forgot Your Password?</a></p>
+				<br />
+				<br /><p><a href="{{ url('/password/email') }}">Forgot Your Password?</a></p>
+				<br />
 				<p>New here? <a href="{{ url('/auth/register') }}">Register</a>.</p>
 			</div>
 		</div>
