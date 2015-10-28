@@ -5997,4 +5997,34 @@ body {
 img {
   width: 100%; }
 
+.parent {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 300px;
+  /* Or whatever */ }
+
+.child {
+  width: auto;
+  /* Or whatever */
+  margin: auto;
+  /* Magic! */ }
+
+.border-util {
+  border: 1px solid #dedede;
+  overflow: auto; }
+
+.padding-util {
+  padding: 20px; }
+
+.nobr-util {
+  white-space: nowrap; }
+
+.white-bg-util {
+  background-color: #fff; }
+
+/*OVERRIDES*/
+.form-horizontal .control-label {
+  text-align: left; }
+
 /*# sourceMappingURL=app.css.map */

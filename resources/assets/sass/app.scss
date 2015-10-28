@@ -1,3 +1,5 @@
+$grey: #dedede;
+
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 body {
@@ -6,4 +8,37 @@ body {
 
 img {
 	width: 100%;
+}
+
+.parent {
+	display: flex;
+	height: 300px; /* Or whatever */
+}
+
+.child {
+	width: auto;  /* Or whatever */
+	margin: auto;  /* Magic! */
+}
+
+.border-util {
+	border: 1px solid $grey;
+	overflow: auto;
+}
+
+.padding-util {
+	padding: 20px;
+}
+
+.nobr-util {
+	white-space: nowrap;
+}
+
+.white-bg-util {
+	background-color: #fff;
+}
+
+/*OVERRIDES*/
+
+.form-horizontal .control-label {
+    text-align: left;
 }
