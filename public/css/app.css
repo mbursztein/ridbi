@@ -6075,7 +6075,7 @@ img {
 
 h1 {
   text-align: center;
-  margin: 5px 0; }
+  margin: 5px 0 10px 0; }
 
 .dropzone {
   border: 3px dashed #dedede !important; }

@@ -59,10 +59,11 @@
 @else
 	
 	@if ($status == 'available')
-		<!-- Only show this if logged in user didn't request the item already -->
-		<form id="requestThing" action="/things/ask/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
-			<button class="btn btn-primary" onclick="popitRequest(); return false;">Request</button>
-		</form>
+		<div class="center-util padding-util">
+			<form id="requestThing" action="/things/ask/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
+				<button class="btn btn-primary" onclick="popitRequest(); return false;">Request</button>
+			</form>
+		</div>
 	@else
 		Sorry, item not available at this time.
 	@endif
@@ -73,6 +74,7 @@
 
 @if (\Auth::check() && $thing->ownedBy(\Auth::user()))
 	<div class="center-util padding-util">
+		<br />
 		<form id="destroyThing" action="/things/destroy/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
 			<button class="btn btn-danger" onclick="popitDelete(); return false;">Remove</button>
 		</form>
