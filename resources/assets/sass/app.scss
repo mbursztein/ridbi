@@ -27,6 +27,10 @@ img {
 	overflow: auto;
 }
 
+.grey-util {
+	color: $grey;
+}
+
 .padding-util {
 	padding: 20px;
 }
@@ -98,4 +102,13 @@ img {
 
 .navbar-default .navbar-brand {
 	color: #fff;
+}
+
+h1 {
+	text-align: center;
+	margin: 5px 0;
+}
+
+.dropzone {
+	border: 3px dashed $grey !important;
 }

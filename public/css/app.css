@@ -6013,6 +6013,9 @@ img {
   border: 1px solid #dedede;
   overflow: auto; }
 
+.grey-util {
+  color: #dedede; }
+
 .padding-util {
   padding: 20px; }
 
@@ -6069,5 +6072,12 @@ img {
 
 .navbar-default .navbar-brand {
   color: #fff; }
+
+h1 {
+  text-align: center;
+  margin: 5px 0; }
+
+.dropzone {
+  border: 3px dashed #dedede !important; }
 
 /*# sourceMappingURL=app.css.map */

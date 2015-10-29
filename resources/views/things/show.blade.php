@@ -30,30 +30,16 @@
 	}
 </script>
 
-@if (\Auth::check() && $thing->ownedBy(\Auth::user()))
-	<form id="destroyThing" action="/things/destroy/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
-		<button class="btn btn-danger" onclick="popitDelete(); return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
-	</form>
-	<br />
-	<div>
-		@if ($status != 'Available')
-			<a href="/rentals">
-		@endif
-		<span class="label label-{{$label_type}}">{{$status}}</span>
-		@if ($status != 'Available')
-			</a>
-		@endif
-	</div>
-@endif
 
 
-<h2>
+
+<h1>
 	@if (\Auth::check() && $thing->ownedBy(\Auth::user()))<span data-inputclass="thing_name_editable_field" id="name" data-type="text" data-pk="{{ $thing->id }}" data-url="/things/update/{{ $thing->id }}" data-title="Enter name">@endif
-		{{ $thing->name }}</h2>
+		{{ $thing->name }}
 	@if (\Auth::check() && $thing->ownedBy(\Auth::user()))</span>@endif
-</h2>
+</h1>
 
-<h3>{{ $thing->description }}</h3>
+<p>{{ $thing->description }}</p>
 
 @foreach ($thing->photos as $photo)
 	<img src="/{{ $photo->path }}" alt="" />
@@ -66,7 +52,10 @@
 
 
 @if (\Auth::check() && $thing->ownedBy(\Auth::user()))
-	<form id="addPhotosForm" action="/things/{{ $thing->id }}/photos" method="POST" class="dropzone">{!! csrf_field() !!}</form>
+	<form id="addPhotosForm" action="/things/{{ $thing->id }}/photos" method="POST" class="dropzone">
+		{!! csrf_field() !!}
+		<div class="dz-message" data-dz-message><span class="grey-util"><i class="fa fa-camera fa-3x"></i><br />JPG or PNG</span></div>
+	</form>
 @else
 	
 	@if ($status == 'available')
@@ -75,14 +64,20 @@
 			<button class="btn btn-primary" onclick="popitRequest(); return false;">Request</button>
 		</form>
 	@else
-		Item not available
+		Sorry, item not available at this time.
 	@endif
 @endif
 
 
 
 
-	
+@if (\Auth::check() && $thing->ownedBy(\Auth::user()))
+	<div class="center-util padding-util">
+		<form id="destroyThing" action="/things/destroy/{{ $thing->id }}" method="POST">{!! csrf_field() !!}
+			<button class="btn btn-danger" onclick="popitDelete(); return false;">Remove</button>
+		</form>
+	</div>
+@endif
 		
 	
 
@@ -96,7 +91,8 @@
 		Dropzone.options.addPhotosForm = {
 			paramName: 'photo',
 			maxFilesize: 3,
-			acceptedFiles: '.jpg, .jprg, .png'
+			acceptedFiles: '.jpg, .jpeg, .png',
+			dictDefaultMessage: 'photo!'
 		}
 
 		$(document).ready(function() {
@@ -108,7 +104,9 @@
 
 		$.fn.editable.defaults.mode = 'inline';
 
-
-
 	</script>
 @stop
+
+
+
+

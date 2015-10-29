@@ -82,7 +82,7 @@ class AuthController extends Controller
         if ($user_exists) {
             $user_id = User::where('email', '=', $user->email)->first();
             \Auth::loginUsingId($user_id->id);
-            return redirect('/home');
+            return redirect('/things/mine');
         } else {
             User::create([
                 'name' => $user->name,
@@ -92,7 +92,7 @@ class AuthController extends Controller
             ]);
             $user_id = User::where('email', '=', $user->email)->first();
             \Auth::loginUsingId($user_id->id);
-            return redirect('/home');
+            return redirect('/things/mine');
         }
     }
 

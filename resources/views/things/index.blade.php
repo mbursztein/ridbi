@@ -13,6 +13,7 @@
 	@foreach ($things as $thing)
 	<ul class="thing-list">
 		<li>
+			<?php $mypath = ''; ?>
 			@foreach ($thing->photos as $photo)
 				<?php $mypath = $photo->path; ?>
 			@endforeach
